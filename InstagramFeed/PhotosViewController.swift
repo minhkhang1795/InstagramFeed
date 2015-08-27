@@ -12,20 +12,23 @@ class PhotosViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var photos: [NSDictionary]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var clientId = "https://api.instagram.com/v1/media/popular?client_id=2c7a12ed3cf243d69c51d334d4b57dec"
+        var clientId = "2c7a12ed3cf243d69c51d334d4b57dec"
         
         var url = NSURL(string: "https://api.instagram.com/v1/media/popular?client_id=\(clientId)")!
         var request = NSURLRequest(URL: url)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
             var responseDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as! NSDictionary
-            self.photos = responseDictionary["data"] as! NSArray
+            
+            self.photos = (responseDictionary["data"]  as! [NSDictionary])
             self.tableView.reloadData()
             
             NSLog("response: \(self.photos)")
-            tableView.rowHeight = 320
+            self.tableView.rowHeight = 320
         }
         // Do any additional setup after loading the view.
     }
