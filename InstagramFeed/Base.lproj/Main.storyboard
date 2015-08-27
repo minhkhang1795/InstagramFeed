@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--Photos View Controller-->
+        <!--Instagram Feed-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="PhotosViewController" customModule="InstagramFeed" customModuleProvider="target" sceneMemberID="viewController">
@@ -21,7 +21,7 @@
                                         <rect key="frame" x="0.0" y="86" width="320" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Y2-hA-c1D" id="xpO-uY-B7W">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="174.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="174"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="pX5-hH-Y72">
@@ -40,7 +40,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="6xL-b3-PSP"/>
+                    <navigationItem key="navigationItem" title="Instagram Feed" id="6xL-b3-PSP"/>
                     <connections>
                         <outlet property="tableView" destination="4vZ-LR-vbi" id="ChW-6w-9Ck"/>
                     </connections>

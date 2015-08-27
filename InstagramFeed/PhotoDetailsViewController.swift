@@ -13,10 +13,13 @@ class PhotoDetailsViewController: UIViewController {
     
     @IBOutlet weak var detailPhotoView: UIImageView!
     
+    var photo: NSDictionary!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        let url = NSURL(string: photo.valueForKeyPath("images.standard_resolution.url") as! String)!
+        detailPhotoView.setImageWithURL(url)
+
     }
     
     override func didReceiveMemoryWarning() {

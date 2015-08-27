@@ -50,9 +50,8 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell", forIndexPath: indexPath) as! PhotoCell
-        let photo = photos[indexPath.row]
-        let url = NSURL(string: photo.valueForKeyPath("images.thumbnail.url") as! String)!
-        
+        let photo = photos[indexPath.row] as! NSDictionary
+        let url = NSURL(string: photo.valueForKeyPath("images.standard_resolution.url") as! String)!
         
         println("\(url)")
         cell.photoView.setImageWithURL(url)
@@ -70,13 +69,9 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         let cell = sender as! UITableViewCell
         let indexPath = tableView.indexPathForCell(cell)
         
-        let photo = photos[indexPath!.row]
+        let photo = photos[indexPath!.row] as! NSDictionary
         let vc = segue.destinationViewController as! PhotoDetailsViewController
-        let url = NSURL(string: photo.valueForKeyPath("images.thumbnail.url") as! String)!
-
-        vc.detailPhotoView.setImageWithURL(url)
-    
+        
+        vc.photo = photo
     }
-    
-
 }
