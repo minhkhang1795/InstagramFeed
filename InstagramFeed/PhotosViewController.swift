@@ -45,17 +45,15 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let photos = self.photos {
             return photos.count
-        } else {
-            return 0
-        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell", forIndexPath: indexPath) as! PhotoCell
         let photo = photos[indexPath.row]
-        let url = NSURL(string: photo.valueForKeyPath("comments.data.from.profile_picture") as! String)!
+        let url = NSURL(string: photo.valueForKeyPath("user.profile_picture") as! String)!
+        
+        
         println("\(url)")
         cell.photoView.setImageWithURL(url)
         
