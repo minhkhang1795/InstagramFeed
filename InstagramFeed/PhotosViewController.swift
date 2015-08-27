@@ -8,11 +8,11 @@
 
 import UIKit
 
-class PhotosViewController: UIViewController {
+class PhotosViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var photos: [NSDictionary]?
+    var photos: NSArray = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +24,12 @@ class PhotosViewController: UIViewController {
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
             var responseDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as! NSDictionary
             
-            self.photos = (responseDictionary["data"]  as! [NSDictionary])
+            self.photos = responseDictionary["data"] as! NSArray
             self.tableView.reloadData()
             
-            NSLog("response: \(self.photos)")
+            self.tableView.dataSource = self
+            self.tableView.delegate = self
+            
             self.tableView.rowHeight = 320
         }
         // Do any additional setup after loading the view.
@@ -40,6 +42,24 @@ class PhotosViewController: UIViewController {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let photos = self.photos {
+            return photos.count
+        } else {
+            return 0
+        }
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell", forIndexPath: indexPath) as! PhotoCell
+        let photo = photos[indexPath.row]
+        let url = NSURL(string: photo.valueForKeyPath("comments.data.from.profile_picture") as! String)!
+        println("\(url)")
+        cell.photoView.setImageWithURL(url)
+        
+        return cell
     }
     
     
