@@ -13,6 +13,17 @@ class PhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        var clientId = "Put your client id here"
+        
+        var url = NSURL(string: "https://api.instagram.com/v1/media/popular?client_id=\(clientId)")!
+        var request = NSURLRequest(URL: url)
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+            var responseDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as! NSDictionary
+            self.photos = responseDictionary["data"] as! NSArray
+//            self.tableView.reloadData()
+            
+            NSLog("response: \(self.photos)")
+        }
         // Do any additional setup after loading the view.
     }
 
