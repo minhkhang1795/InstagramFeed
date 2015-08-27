@@ -65,8 +65,16 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var vc = segue.destinationViewController as! PhotoDetailsViewController
-        var indexPath = tableView.indexPathForCell(sender as! UITableViewCell)
+        
+        
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPathForCell(cell)
+        
+        let photo = photos[indexPath!.row]
+        let vc = segue.destinationViewController as! PhotoDetailsViewController
+        let url = NSURL(string: photo.valueForKeyPath("images.thumbnail.url") as! String)!
+
+        vc.detailPhotoView.setImageWithURL(url)
     
     }
     

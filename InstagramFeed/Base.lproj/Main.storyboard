@@ -21,7 +21,7 @@
                                         <rect key="frame" x="0.0" y="86" width="320" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Y2-hA-c1D" id="xpO-uY-B7W">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="174"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="174.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="pX5-hH-Y72">
@@ -52,13 +52,22 @@
         <!--Photo Details View Controller-->
         <scene sceneID="UIs-4A-yhI">
             <objects>
-                <viewController id="zWy-Gw-c7K" customClass="PhotoDetailsViewController" sceneMemberID="viewController">
+                <viewController id="zWy-Gw-c7K" customClass="PhotoDetailsViewController" customModule="InstagramFeed" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AdX-bp-m1O">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="3ZY-bE-4Yq">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="QL3-PF-6P8"/>
+                    <connections>
+                        <outlet property="detailPhotoView" destination="3ZY-bE-4Yq" id="0z3-2B-Spx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6AU-ns-QK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
